@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cyber Detective - A fictional cybersecurity investigation and digital forensics game.">
+  <title>Cyber Detective // Incident Response Terminal</title>
+  
+  <!-- Modern Clean Typography: Inter for UI & JetBrains Mono for Forensic Logs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-soc">
+
+  <!-- Top System Header (SOC Command Bar) -->
+  <header class="soc-topbar" id="soc-topbar">
+    <div class="topbar-brand">
+      <div class="brand-badge">
+        <span class="pulse-indicator" aria-hidden="true"></span>
+        <span class="brand-code">SOC-TERMINAL v1.0</span>
+      </div>
+      <h1 class="brand-title">CYBER DETECTIVE</h1>
+    </div>
+
+    <div class="topbar-meta">
+      <div class="meta-item">
+        <span class="meta-label">SYSTEM STATUS:</span>
+        <span class="meta-value status-active" id="system-status-indicator">ONLINE // SECURE</span>
+      </div>
+      <div class="meta-item timestamp-item">
+        <span class="meta-label">LOG TIME:</span>
+        <span class="meta-value font-mono" id="live-system-time">--:--:-- UTC</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Banner / Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Main Viewport Router Container -->
+  <main class="app-viewport" id="app-viewport">
+
+    <!-- ========================================== -->
+    <!-- SCREEN 1: MAIN MENU                        -->
+    <!-- ========================================== -->
+    <section class="screen active" id="screen-menu" aria-label="Main Menu">
+      <div class="menu-card">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">incident_response_station.sh</span>
+        </div>
+
+        <div class="menu-content">
+          <div class="menu-badge">DFIR FORENSICS SUITE</div>
+          <h2 class="menu-hero-title">CYBER DETECTIVE</h2>
+          <p class="menu-hero-subtitle">
+            Analyze digital artifacts, reconstruct intrusion timelines, and deduce the threat vector.
+          </p>
+
+          <div class="menu-actions">
+            <button type="button" class="btn btn-primary" id="btn-new-game">
+              <span class="btn-icon">▶</span>
+              <span>New Investigation</span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="btn-resume-game" disabled>
+              <span class="btn-icon">↺</span>
+              <span>Resume Case</span>
+              <small class="btn-subtext" id="resume-subtext">No saved case found</small>
+            </button>
+
+            <button type="button" class="btn btn-outline" id="btn-open-about">
+              <span class="btn-icon">ℹ</span>
+              <span>Briefing & Protocol</span>
+            </button>
+          </div>
+
+          <div class="menu-footer-notice">
+            <span class="notice-tag">NOTICE</span>
+            <span>All systems, IP addresses, credentials, and artifacts in this exercise are entirely fictional.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 2: CASE BRIEFING                    -->
+    <!-- ========================================== -->
+    <section class="screen" id="screen-briefing" aria-label="Case Briefing">
+      <div class="briefing-container">
+        <div class="briefing-header">
+          <div class="briefing-meta-tags">
+            <span class="tag tag-case" id="briefing-case-id">CASE #001</span>
+            <span class="tag tag-priority">PRIORITY: HIGH</span>
+            <span class="tag tag-status">UNSOLVED</span>
+          </div>
+          <h2 class="briefing-title" id="briefing-title">THE MIDNIGHT LOGIN</h2>
+          <p class="briefing-target" id="briefing-target">Target Organization: Oakwood College of Technology</p>
+        </div>
+
+        <div class="briefing-grid">
+          <div class="briefing-panel">
+            <h3 class="panel-heading">Incident Overview</h3>
+            <p class="panel-body-text" id="briefing-summary">
+              At 02:37 UTC, the automated SOC alert system triggered on the primary grading and records database. 
+              An active session modified academic standings during closed hours. You are tasked with analyzing the preserved server artifacts.
+            </p>
+
+            <h3 class="panel-heading">Primary Objectives</h3>
+            <ul class="panel-list" id="briefing-objectives">
+              <li>Determine which user account was utilized for unauthorized access.</li>
+              <li>Identify the intrusion vector used to bypass authentication controls.</li>
+              <li>Gather forensic evidence proving the perpetrator's identity.</li>
+            </ul>
+          </div>
+
+          <div class="briefing-panel briefing-panel-sidebar">
+            <h3 class="panel-heading">Available Evidence Pool</h3>
+            <div class="evidence-preview-list" id="briefing-evidence-preview">
+              <!-- Dynamically populated -->
+              <div class="preview-item">
+                <span class="preview-type">LOG</span>
+                <span>Radius Authentication Logs (02:00-03:00)</span>
+              </div>
+              <div class="preview-item">
+                <span class="preview-type">EMAIL</span>
+                <span>IT Support Ticket #8841</span>
+              </div>
+              <div class="preview-item">
+                <span class="preview-type">NETWORK</span>
+                <span>External Gateway Netflow Records</span>
+              </div>
+            </div>
+
+            <div class="briefing-actions">
+              <button type="button" class="btn btn-primary btn-block" id="btn-start-investigation">
+                <span>Accept Case & Open Station</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <button type="button" class="btn btn-ghost btn-block" id="btn-back-to-menu">
+                <span>Return to Main Menu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 3: INVESTIGATION DASHBOARD          -->
+    <!-- ========================================== -->
+    <section class="screen" id="screen-dashboard" aria-label="Investigation Dashboard">
+      <div class="dashboard-layout">
+        
+        <!-- Dashboard Sub-Header / Case Stats Bar -->
+        <div class="dashboard-stats-bar">
+          <div class="stats-case-info">
+            <span class="stats-label">ACTIVE CASE:</span>
+            <span class="stats-value" id="dash-case-title">#001 — The Midnight Login</span>
+          </div>
+
+          <div class="stats-metrics">
+            <div class="metric-box">
+              <span class="metric-label">EVIDENCE INSPECTED</span>
+              <span class="metric-number" id="dash-evidence-count">0 / 0</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">CLUES IDENTIFIED</span>
+              <span class="metric-number" id="dash-clues-count">0 / 0</span>
+            </div>
+            <div class="metric-box progress-box">
+              <div class="progress-label-row">
+                <span class="metric-label">INVESTIGATION PROGRESS</span>
+                <span class="progress-percent" id="dash-progress-percent">0%</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="dash-progress-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-actions">
+            <button type="button" class="btn btn-accent" id="btn-open-deduction">
+              <span class="btn-icon">⚡</span>
+              <span>Deduction Board</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-exit-to-menu">
+              <span>Save & Menu</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Workspace: Evidence Grid (Left) + Clue Notebook (Right) -->
+        <div class="dashboard-main">
+          
+          <!-- Left: Evidence Explorer -->
+          <div class="dashboard-evidence-area">
+            <div class="evidence-toolbar">
+              <div class="filter-tabs" id="evidence-filter-tabs">
+                <button type="button" class="filter-tab active" data-category="all">All Evidence (<span id="count-all">0</span>)</button>
+                <button type="button" class="filter-tab" data-category="logs">Auth & Logs (<span id="count-logs">0</span>)</button>
+                <button type="button" class="filter-tab" data-category="email">Emails & Tickets (<span id="count-email">0</span>)</button>
+                <button type="button" class="filter-tab" data-category="network">Network (<span id="count-network">0</span>)</button>
+                <button type="button" class="filter-tab" data-category="system">System Files (<span id="count-system">0</span>)</button>
+              </div>
+            </div>
+
+            <div class="evidence-grid" id="evidence-grid" tabindex="0" aria-label="Evidence cards">
+              <!-- Populated dynamically by ui.js -->
+            </div>
+          </div>
+
+          <!-- Right: Clue Notebook & Lead Board -->
+          <aside class="dashboard-notebook-area" aria-label="Investigation Notebook">
+            <div class="notebook-card">
+              <div class="notebook-header">
+                <div class="notebook-title-row">
+                  <span class="notebook-icon">📋</span>
+                  <h3 class="notebook-title">Clue Notebook</h3>
+                </div>
+                <span class="badge" id="notebook-count-badge">0 Found</span>
+              </div>
+              <p class="notebook-instructions">
+                Inspect evidence cards to discover forensic findings and correlate anomalies.
+              </p>
+
+              <div class="clues-list" id="clues-list">
+                <div class="empty-state">
+                  <p>No clues identified yet.</p>
+                  <small>Open an evidence file from the left to begin your forensic analysis.</small>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 4: DEDUCTION BOARD                  -->
+    <!-- ========================================== -->
+    <section class="screen" id="screen-deduction" aria-label="Deduction Board">
+      <div class="deduction-container">
+        <div class="deduction-header">
+          <div class="menu-badge">INCIDENT HYPOTHESIS & PROOF</div>
+          <h2 class="deduction-title">Deduction & Theory Formulation</h2>
+          <p class="deduction-subtitle">
+            Synthesize your forensic evidence. Select the suspect, the intrusion method, and the key proof before issuing your conclusion.
+          </p>
+        </div>
+
+        <form id="form-deduction" class="deduction-form">
+          <div class="deduction-cards-grid">
+            
+            <!-- Step 1: Who was the actor? -->
+            <div class="deduction-card">
+              <div class="card-step-badge">STAGE 01</div>
+              <h3 class="card-step-title">Primary Suspect / Actor</h3>
+              <p class="card-step-desc">Who gained unauthorized access to the grading server?</p>
+              
+              <div class="options-group" id="suspect-options-group">
+                <!-- Injected via ui.js -->
+              </div>
+            </div>
+
+            <!-- Step 2: What was the intrusion vector? -->
+            <div class="deduction-card">
+              <div class="card-step-badge">STAGE 02</div>
+              <h3 class="card-step-title">Access Vector / Method</h3>
+              <p class="card-step-desc">How did the intruder bypass security protections?</p>
+              
+              <div class="options-group" id="vector-options-group">
+                <!-- Injected via ui.js -->
+              </div>
+            </div>
+
+            <!-- Step 3: Which key artifact proves it? -->
+            <div class="deduction-card">
+              <div class="card-step-badge">STAGE 03</div>
+              <h3 class="card-step-title">Crucial Evidence Artifact</h3>
+              <p class="card-step-desc">Which single artifact definitively substantiates the claim?</p>
+              
+              <div class="options-group" id="evidence-options-group">
+                <!-- Injected via ui.js -->
+              </div>
+            </div>
+
+          </div>
+
+          <div class="deduction-actions">
+            <button type="button" class="btn btn-secondary" id="btn-back-from-deduction">
+              <span>Back to Dashboard</span>
+            </button>
+            <button type="submit" class="btn btn-accent btn-lg" id="btn-submit-theory">
+              <span>Submit Theory for Verification</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 5: RESULTS & DEBRIEF                -->
+    <!-- ========================================== -->
+    <section class="screen" id="screen-results" aria-label="Investigation Results">
+      <div class="results-container">
+        
+        <div class="results-verdict-banner" id="results-verdict-banner">
+          <div class="verdict-icon" id="verdict-icon">✓</div>
+          <div class="verdict-text-group">
+            <div class="verdict-status-tag" id="verdict-status-tag">CASE SOLVED</div>
+            <h2 class="verdict-title" id="verdict-title">Forensic Assessment: Accurate Deduction</h2>
+          </div>
+          <div class="verdict-score-box">
+            <span class="score-label">INVESTIGATION RATING</span>
+            <span class="score-value" id="verdict-score">100%</span>
+          </div>
+        </div>
+
+        <div class="results-content-grid">
+          
+          <!-- Detailed Incident Reconstruction -->
+          <div class="results-panel">
+            <h3 class="panel-heading">Incident Debrief & What Actually Happened</h3>
+            <div class="debrief-body" id="results-debrief-text">
+              <!-- Rendered via ui.js -->
+            </div>
+
+            <h3 class="panel-heading">Key Cybersecurity Lessons</h3>
+            <ul class="panel-list educational-list" id="results-education-list">
+              <!-- Rendered via ui.js -->
+            </ul>
+          </div>
+
+          <!-- Player Submission Breakdown -->
+          <div class="results-panel results-summary-sidebar">
+            <h3 class="panel-heading">Your Theory Review</h3>
+            
+            <div class="theory-review-item">
+              <span class="review-label">Suspect Accused:</span>
+              <div class="review-val" id="review-suspect">--</div>
+            </div>
+
+            <div class="theory-review-item">
+              <span class="review-label">Intrusion Vector:</span>
+              <div class="review-val" id="review-vector">--</div>
+            </div>
+
+            <div class="theory-review-item">
+              <span class="review-label">Supporting Evidence:</span>
+              <div class="review-val" id="review-evidence">--</div>
+            </div>
+
+            <div class="results-actions">
+              <button type="button" class="btn btn-primary btn-block" id="btn-replay-case">
+                <span>Replay Investigation</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-block" id="btn-results-menu">
+                <span>Return to Menu</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: EVIDENCE VIEWER                     -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="modal-evidence" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-evidence-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="tag tag-case" id="modal-evidence-category">LOGS</span>
+          <h2 class="modal-title font-mono" id="modal-evidence-title">auth_audit.log</h2>
+        </div>
+        <button type="button" class="btn-close-modal" id="btn-close-evidence" aria-label="Close Evidence Viewer">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Metadata bar -->
+        <div class="evidence-metadata-bar" id="modal-evidence-metadata">
+          <!-- e.g. Timestamp, Source host, Format -->
+        </div>
+
+        <!-- Description/Context -->
+        <p class="evidence-context" id="modal-evidence-desc"></p>
+
+        <!-- Formatted Content Area (Terminal/Log view or Email view) -->
+        <div class="evidence-content-box" id="modal-evidence-content">
+          <!-- Dynamic syntax highlighted or formatted document -->
+        </div>
+
+        <!-- Clue Action Banner inside modal -->
+        <div class="evidence-clue-discovery-banner" id="modal-clue-banner">
+          <div class="clue-banner-text">
+            <span class="clue-banner-icon">💡</span>
+            <div class="clue-banner-details">
+              <strong id="modal-clue-title">Forensic Finding Available</strong>
+              <p id="modal-clue-desc">Analyze this artifact to log a breakthrough into your case notebook.</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-accent btn-sm" id="btn-extract-clue">
+            <span>Log Finding to Notebook</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span class="modal-footer-tip">Keyboard shortcut: Press <kbd>ESC</kbd> to return to investigation board</span>
+        <button type="button" class="btn btn-secondary" id="btn-modal-close-action">Close Artifact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ABOUT & BRIEFING PROTOCOL           -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop" id="modal-about" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+    <div class="modal-window modal-window-sm">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-about-title">Cyber Detective Protocol</h2>
+        <button type="button" class="btn-close-modal" id="btn-close-about" aria-label="Close Protocol Modal">✕</button>
+      </div>
+      <div class="modal-body about-body">
+        <h4>About This Simulation</h4>
+        <p>
+          <strong>Cyber Detective</strong> is a beginner-friendly digital forensics and cybersecurity investigation game.
+          You step into the shoes of an incident responder tasked with unraveling realistic simulated cyber events.
+        </p>
+
+        <h4>Investigation Workflow</h4>
+        <ol class="panel-list">
+          <li><strong>Examine Evidence:</strong> Read server logs, support tickets, network records, and file metadata.</li>
+          <li><strong>Extract Clues:</strong> Identify timestamp mismatches, abnormal source IPs, and credential anomalies.</li>
+          <li><strong>Synthesize Theory:</strong> Access the Deduction Board to select the perpetrator and vector.</li>
+        </ol>
+
+        <h4>Safety & Ethics Standard</h4>
+        <p class="font-mono text-muted">
+          All IPs, domains, usernames, and server logs are purely fictional. This exercise runs 100% locally in your browser.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-about-got-it">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
