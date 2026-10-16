@@ -7,41 +7,41 @@
    1. CSS Custom Properties / Design Tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Color Palette */
-  --bg-app: #080c14;
-  --bg-surface: #0d1322;
-  --bg-card: #131b2e;
-  --bg-card-hover: #19233c;
-  --bg-elevated: #1e2942;
-  --bg-modal: #0f172a;
+  /* Color Palette — Oxblood & Black */
+  --bg-app: #0a0000;
+  --bg-surface: #110000;
+  --bg-card: #1a0202;
+  --bg-card-hover: #220303;
+  --bg-elevated: #2a0404;
+  --bg-modal: #0d0000;
   
-  /* Accents & Signals */
-  --cyan-primary: #06b6d4;
-  --cyan-hover: #22d3ee;
-  --cyan-dim: rgba(6, 182, 212, 0.15);
-  --cyan-border: rgba(6, 182, 212, 0.35);
+  /* Accents & Signals — Oxblood Primary */
+  --cyan-primary: #8b0000;
+  --cyan-hover: #a10000;
+  --cyan-dim: rgba(107, 5, 4, 0.18);
+  --cyan-border: rgba(139, 0, 0, 0.45);
   
-  --amber-alert: #f59e0b;
-  --amber-dim: rgba(245, 158, 11, 0.15);
+  --amber-alert: #c0392b;
+  --amber-dim: rgba(192, 57, 43, 0.15);
   
-  --emerald-success: #10b981;
-  --emerald-dim: rgba(16, 185, 129, 0.15);
+  --emerald-success: #9b1c1c;
+  --emerald-dim: rgba(155, 28, 28, 0.18);
   
-  --rose-danger: #f43f5e;
-  --rose-dim: rgba(244, 63, 94, 0.15);
+  --rose-danger: #ff2222;
+  --rose-dim: rgba(255, 34, 34, 0.12);
   
-  --purple-intel: #a855f7;
-  --purple-dim: rgba(168, 85, 247, 0.15);
+  --purple-intel: #b03030;
+  --purple-dim: rgba(176, 48, 48, 0.15);
 
   /* Typography Colors */
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  --text-inverse: #030712;
+  --text-main: #f5e6e6;
+  --text-muted: #b07070;
+  --text-dim: #6b3333;
+  --text-inverse: #0a0000;
 
   /* Borders & Dividers */
-  --border-subtle: rgba(148, 163, 184, 0.12);
-  --border-light: rgba(148, 163, 184, 0.22);
+  --border-subtle: rgba(139, 0, 0, 0.15);
+  --border-light: rgba(139, 0, 0, 0.28);
   --border-active: var(--cyan-primary);
 
   /* Fonts */
@@ -49,10 +49,10 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
 
   /* Shadows & Elevations */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.7);
-  --glow-cyan: 0 0 18px rgba(6, 182, 212, 0.3);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.85);
+  --glow-cyan: 0 0 18px rgba(139, 0, 0, 0.35);
 
   /* Layout */
   --max-width: 1360px;
@@ -88,9 +88,9 @@ html, body {
 /* Background Subtle Grid Texture (Forensic Terminal Grid) */
 body {
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    radial-gradient(circle at 50% 0%, rgba(139, 0, 0, 0.10) 0%, transparent 60%),
+    linear-gradient(rgba(139, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 100% 100%, 32px 32px, 32px 32px;
   background-position: center top, -1px -1px, -1px -1px;
 }
@@ -111,7 +111,7 @@ body {
    -------------------------------------------------------------------------- */
 .soc-topbar {
   height: var(--header-height);
-  background-color: rgba(13, 19, 34, 0.85);
+  background-color: rgba(10, 0, 0, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -258,13 +258,13 @@ body {
 
 .btn-primary {
   background-color: var(--cyan-primary);
-  color: var(--text-inverse);
-  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+  color: #f5e6e6;
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.35);
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--cyan-hover);
-  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.45);
+  box-shadow: 0 4px 14px rgba(139, 0, 0, 0.55);
 }
 
 .btn-secondary {
@@ -279,16 +279,16 @@ body {
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-  color: #fff;
+  background: linear-gradient(135deg, #6b0504, #8b0000);
+  color: #f5e6e6;
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.45);
 }
 
 .btn-accent:hover:not(:disabled) {
-  filter: brightness(1.1);
-  box-shadow: 0 6px 18px rgba(14, 165, 233, 0.5);
+  filter: brightness(1.15);
+  box-shadow: 0 6px 18px rgba(139, 0, 0, 0.65);
 }
 
 .btn-outline {
@@ -402,7 +402,7 @@ body {
 
 .terminal-header {
   height: 38px;
-  background-color: #0b0f1a;
+  background-color: #080000;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -704,9 +704,9 @@ body {
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+  background: linear-gradient(90deg, #6b0504, #8b0000);
   transition: width 350ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.55);
 }
 
 .stats-actions {
@@ -1071,7 +1071,7 @@ body {
 .deduction-option input[type="radio"]:checked + .option-box {
   background-color: var(--cyan-dim);
   border-color: var(--cyan-primary);
-  box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 0 12px rgba(139, 0, 0, 0.25);
 }
 
 .option-label {
@@ -1274,7 +1274,7 @@ body {
   background-color: var(--bg-modal);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(6, 182, 212, 0.1);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(139, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   max-height: 90vh;
@@ -1338,7 +1338,7 @@ body {
 
 .about-body h4 {
   font-size: 0.95rem;
-  color: var(--cyan-primary);
+  color: #c0392b;
   margin-top: 1rem;
   margin-bottom: 0.35rem;
 }
@@ -1388,14 +1388,14 @@ body {
 
 /* Terminal / Log / Email Viewer Box */
 .evidence-content-box {
-  background-color: #070a12;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #060000;
+  border: 1px solid rgba(139, 0, 0, 0.2);
   border-radius: var(--radius-sm);
   padding: 1.2rem;
   font-family: var(--font-mono);
   font-size: 0.84rem;
   line-height: 1.65;
-  color: #e2e8f0;
+  color: #f5e6e6;
   max-height: 380px;
   overflow-y: auto;
   white-space: pre-wrap;
@@ -1403,17 +1403,17 @@ body {
 }
 
 /* Syntax Highlighting inside Logs */
-.hl-time { color: #38bdf8; font-weight: 600; }
-.hl-ip { color: #facc15; }
-.hl-user { color: #a78bfa; font-weight: 600; }
-.hl-status-ok { color: #34d399; }
-.hl-status-warn { color: #fbbf24; }
-.hl-status-alert { color: #f87171; font-weight: 600; }
-.hl-accent { color: #22d3ee; }
+.hl-time { color: #d97070; font-weight: 600; }
+.hl-ip { color: #e8a87c; }
+.hl-user { color: #c47070; font-weight: 600; }
+.hl-status-ok { color: #9b3030; }
+.hl-status-warn { color: #c0392b; }
+.hl-status-alert { color: #ff4040; font-weight: 600; }
+.hl-accent { color: #a01010; }
 
 /* Clue Extraction Banner inside Evidence Modal */
 .evidence-clue-discovery-banner {
-  background: linear-gradient(90deg, rgba(6, 182, 212, 0.15), rgba(16, 185, 129, 0.12));
+  background: linear-gradient(90deg, rgba(107, 5, 4, 0.18), rgba(139, 0, 0, 0.12));
   border: 1px solid var(--cyan-border);
   border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
